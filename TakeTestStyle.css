@@ -1,0 +1,424 @@
+/* Ensure body takes up full height and centers the card on the screen */
+/* Motivating background color scheme */
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #00bcd4;
+    background: linear-gradient(135deg, #f3a0bd, #8BC34A, #03A9F4); /* Sunny yellow, fresh green, and sky blue gradient */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+/* Container for the whole card */
+.container {
+    width: 100%;
+    max-width: 1000px; /* Increase the container width for a more spacious layout */
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1000px; /* Adds depth with perspective */
+}
+
+/* Card that holds content */
+/* Card that holds content */
+.card {
+    background: #ffffff;
+    border-radius: 20px; /* More pronounced rounded corners */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); /* Deeper shadow for a floating effect */
+    padding: 20px; /* Reduced padding to decrease vertical size */
+    width: 100%;
+    max-width: 750px; /* Keeping width the same */
+    max-height: 600px; /* Limit height to decrease vertical size */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Align items centrally */
+    border: none;
+    position: relative;
+    box-sizing: border-box;
+    transition: transform 0.3s ease-out; /* Smooth animation */
+    overflow-y: auto; /* Add scrolling if content overflows */
+}
+
+
+/* Hover effect for the card */
+.card:hover {
+    transform: scale(1.02); /* Subtle hover zoom effect */
+}
+
+/* Navbar inside the card */
+.header nav {
+    display: flex;
+    justify-content: space-between; /* Space out buttons between left and right */
+    align-items: center; /* Vertically align navbar items */
+    width: 100%; /* Ensure navbar takes full width of the card */
+    padding: 20px 30px;
+    background: linear-gradient(135deg, #88ff76, #79eccc); /* Gradient navbar background */
+    border-radius: 20px 20px 0 0; /* Rounded corners on top */
+    box-sizing: border-box;
+    position: absolute; /* Fix navbar inside the card */
+    top: 0;
+    left: 0;
+}
+
+/* Sticky Navbar button styles */
+.header .button {
+    background: #8E24AA; /* Strong purple color */
+    color: #ffffff;
+    padding: 12px 20px;
+    text-decoration: none;
+    border-radius: 50px; /* Circular button shape */
+    font-size: 18px;
+    transition: background 0.3s ease, transform 0.3s ease;
+    margin: 0;
+    position: sticky;
+    top: 20px; /* Adjust this value to the desired space from the top */
+    z-index: 10; /* Ensures the button stays above other content */
+}
+
+.header .button:hover {
+    background: #7b1fa2; /* Darker purple on hover */
+    transform: scale(1.05); /* Subtle zoom effect */
+}
+
+/* Left button (Stress Predict Test) */
+.header .left {
+    align-self: flex-start;
+}
+
+/* Right button (Logout) */
+.header .right {
+    align-self: flex-end;
+}
+
+/* Adding padding to account for the fixed navbar height */
+.card-content {
+    margin-top: 110px; /* Account for navbar height */
+    width: 100%;
+}
+
+/* Question section, centered */
+.question-section {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.question-section h2 {
+    font-size: 32px; /* Larger font size for emphasis */
+    font-weight: 700; /* Bold font weight */
+    margin-bottom: 20px;
+    color: #3949ab;
+    letter-spacing: 1px; /* Slight letter spacing for effect */
+    transition: color 0.3s ease;
+}
+
+.question-section h2:hover {
+    color: #FF5722; /* Change color on hover */
+}
+
+.question-section p {
+    font-size: 20px;
+    color: #757575;
+    line-height: 1.6;
+    transition: color 0.3s ease;
+}
+
+.question-section p:hover {
+    color: #FF5722; /* Hover effect for question text */
+}
+
+/* Controls Section: Buttons for Start and Stop recording horizontally */
+.controls {
+    margin-top: 25px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: 25px;
+}
+
+/* Buttons for recording and playing */
+.mic-button, .play-button {
+    background: linear-gradient(145deg, #00BCD4, #008BA3); /* Cyan gradient */
+    color: white;
+    padding: 14px 24px;
+    border: none;
+    border-radius: 50px; /* Circular button shape */
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+
+.mic-button:hover, .play-button:hover {
+    background: linear-gradient(145deg, #008ba3, #00bcd4); /* Reverse gradient on hover */
+    transform: scale(1.05); /* Button grows slightly on hover */
+}
+
+/* Progress Bar Styling */
+#progress-container {
+    margin-top: 20px;
+    width: 100%;
+    height: 14px;
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+#progress-bar {
+    width: 0%;
+    height: 100%;
+    background-color: #00BCD4; /* Match action button color for progress */
+    transition: width 0.3s ease;
+}
+
+/* Navigation buttons styling (inside the card) */
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 40px;
+}
+
+.navigation .button {
+    background: linear-gradient(145deg, #FF5722, #FF9800); /* Orange gradient */
+    color: white;
+    padding: 14px 28px;
+    border-radius: 50px;
+    font-size: 16px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.navigation .button:hover {
+    background: linear-gradient(145deg, #FF9800, #FF5722);
+    transform: scale(1.05); /* Grow effect on hover */
+}
+
+/* Center Play Audio Button */
+.play-audio-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+}
+
+/* Styling for Play Audio button */
+.play-button {
+    background: linear-gradient(145deg, #FF5722, #F44336); /* Bright orange to red gradient */
+    font-size: 22px;
+    padding: 16px 32px;
+    border-radius: 30px; /* More rounded corners */
+    transition: background 0.3s ease, transform 0.3s ease-in-out;
+}
+
+.play-button:hover {
+    background: linear-gradient(145deg, #F44336, #FF5722);
+    transform: scale(1.1); /* More pronounced scale effect */
+}
+
+/* Flash message styling */
+.flash-message {
+    color: #fff;
+    background: linear-gradient(145deg, #4CAF50, #81C784); /* Green gradient for success */
+    padding: 18px;
+    border-radius: 12px;
+    font-size: 18px;
+    margin-top: 20px;
+    text-align: center;
+    display: none;
+    transition: transform 0.3s ease-out;
+}
+
+.flash-message.error {
+    background: linear-gradient(145deg, #F44336, #E57373); /* Red gradient for errors */
+}
+
+.flash-message.success {
+    background: linear-gradient(145deg, #4CAF50, #81C784); /* Green gradient for success */
+}
+
+.flash-message.show {
+    display: block;
+    transform: translateY(0);
+}
+
+/* Animation for flash messages */
+@keyframes flashIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Add this to your existing CSS file */
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  
+  .mic-button,
+  .play-button {
+    background-color: var(--accent-color);
+    color: var(--white);
+    padding: 12px 24px;
+    font-size: 1rem;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .mic-button i,
+  .play-button i {
+    margin-right: 8px;
+  }
+  
+  .mic-button:hover,
+  .play-button:hover {
+    background-color: var(--light-accent);
+  }
+  
+  .play-audio-container {
+    margin-top: 20px;
+  }
+  
+  #stop-audio {
+    background-color: var(--error-color);
+  }
+  
+  #stop-audio:hover {
+    background-color: #ff6b6b;
+  }
+  
+  #stop-audio:disabled {
+    background-color: var(--secondary-color);
+  }
+  
+  /* Enhanced Hover Effects for Buttons */
+.mic-button:hover,
+.play-button:hover,
+#stop-audio:hover {
+  background-color: var(--light-accent);
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Smooth Transitions for Buttons */
+.mic-button,
+.play-button,
+#stop-audio {
+  transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+
+/* Recording Button Pulse Animation */
+.recording {
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    background-color: var(--accent-color);
+  }
+  50% {
+    background-color: var(--light-accent);
+  }
+  100% {
+    background-color: var(--accent-color);
+  }
+}
+
+/* Progress Bar Styling */
+#progress-container {
+  width: 100%;
+  height: 10px;
+  background-color: #ddd;
+  border-radius: var(--border-radius);
+  margin-top: 20px;
+}
+
+#progress-bar {
+  height: 100%;
+  width: 0%;
+  background-color: var(--accent-color);
+  border-radius: var(--border-radius);
+  transition: width 0.2s;
+}
+
+/* Progress Bar Animation */
+@keyframes progress {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+/* Flash Messages Enhancements */
+.flash-message {
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 15px 25px;
+  border-radius: var(--border-radius);
+  margin-top: 20px;
+  color: var(--white);
+}
+
+.flash-message.success {
+  background-color: var(--accent-color);
+}
+
+.flash-message.error {
+  background-color: var(--error-color);
+}
+
+.flash-message.info {
+  background-color: #3498db;
+}
+
+/* Improve Layout for Smaller Screens */
+@media (max-width: 768px) {
+  .controls {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .play-audio-container {
+    margin-top: 20px;
+  }
+
+  #stop-audio {
+    margin-top: 10px;
+  }
+}
+
+/* Slight Adjustments for Mobile Layout */
+@media (max-width: 480px) {
+  .navbar .brand {
+    font-size: 1.2rem;
+  }
+
+  .mic-button,
+  .play-button {
+    padding: 10px 20px;
+  }
+
+  #stop-audio {
+    font-size: 0.9rem;
+    padding: 10px 20px;
+  }
+}
+#next-question{
+    align-self: flex-end;
+}
