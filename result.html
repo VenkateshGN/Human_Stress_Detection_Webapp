@@ -17,6 +17,7 @@
         </header>
 
         <div class="main-content">
+            <!-- Emotion Counts Section -->
             <section class="emotion-counts">
                 <h2>Emotion Counts</h2>
                 <div class="emotion-list">
@@ -43,19 +44,32 @@
                 </div>
             </section>
 
+            <!-- Emotion Distribution (Pie Chart) Section -->
             <section class="chart-container">
-                <h2>Emotion Distribution Chart</h2>
+                <h2>Emotion Distribution (Pie Chart)</h2>
+                <img src="{{ url_for('static', filename='images/emotion_pie_chart.png') }}" alt="Emotion Pie Chart">
+            </section>
+
+            <!-- Emotion Frequency (Bar Chart) Section -->
+            <section class="chart-container">
+                <h2>Emotion Frequency (Bar Chart)</h2>
                 <img src="{{ url_for('static', filename='images/emotion_bar_chart.png') }}" alt="Emotion Bar Chart">
             </section>
 
-            <!-- New Section for Line Chart -->
+            <!-- Emotion Frequency Over Time (Line Chart) Section -->
             <section class="chart-container">
-                <h2>Emotion Frequency Line Chart</h2>
+                <h2>Emotion Frequency Over Time (Line Chart)</h2>
                 <img src="{{ url_for('static', filename='images/emotion_line_chart.png') }}" alt="Emotion Line Chart">
             </section>
         </div>
     </div>
 
+    <!-- Link to Home Page -->
+    <div class="bContainer">
+        <a href="/" class="button">Stress Predict Home Page</a>
+    </div>
+
+    <!-- Footer Section -->
     <footer>
         <p> Developed by the RVCE Students </p>
         <p>&copy; 2024 Emotion Analysis Tool | All Rights Reserved</p>

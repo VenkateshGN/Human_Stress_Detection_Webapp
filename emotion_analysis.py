@@ -57,10 +57,21 @@ def analyze_emotions():
     plt.savefig(line_chart_path)
     plt.close()
 
+    # Generate the pie chart
+    plt.figure(figsize=(8, 8))
+    plt.pie(emotion_counts.values(), labels=emotion_counts.keys(), autopct='%1.1f%%', colors=plt.cm.Paired.colors)
+    plt.title('Emotion Distribution', fontsize=16)
+
+    # Save the pie chart
+    pie_chart_path = "static/images/emotion_pie_chart.png"
+    plt.savefig(pie_chart_path)
+    plt.close()
+
     # Return chart details
     chart_details = {
         "bar_chart_path": bar_chart_path,
         "line_chart_path": line_chart_path,
+        "pie_chart_path": pie_chart_path,  # Return the pie chart path
         "counts": dict(emotion_counts)
     }
 
